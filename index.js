@@ -1,28 +1,28 @@
 const csv = require("csv-parser");
 const fs = require("fs");
-const ParkingLot = require("./models/parkingLot");
-
+const parkingLot = require("./models/parkingLot");
+require("./app");
 // 文件路径
 const filePath = "./file/hdb-carpark-information.csv";
 
 const readStream = fs.createReadStream(filePath);
 // console.log(readStream)
 
-const results = [];
+// const results = [];
 
 readStream
   .pipe(csv())
   .on("data", async (data) => {
-    results.push(data);
+    // results.push(data);
     try {
       await parkingLot.save();
-      results.push(parkingLot);
+      // results.push(parkingLot);
     } catch (error) {
       console.error("Error saving parking lot:", error);
     }
   })
   .on("end", async () => {
-    console.log(results);
+    // console.log(results);
     // 打印第一行数据
-    console.log(results[0]);
+    // console.log(results[0]);
   });
