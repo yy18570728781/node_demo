@@ -15,7 +15,8 @@ readStream
   .on("data", async (data) => {
     // results.push(data);
     try {
-      await parkingLot.save();
+      // const parkingLotInstance = new ParkingLotModel(data);
+      // await parkingLotInstance.save();
       // results.push(parkingLot);
     } catch (error) {
       console.error("Error saving parking lot:", error);
@@ -23,6 +24,8 @@ readStream
   })
   .on("end", async () => {
     // console.log(results);
+    const parkingLotInstance = new ParkingLotModel(data);
+    console.log("11111", parkingLotInstance);
     // 打印第一行数据
     // console.log(results[0]);
   });
