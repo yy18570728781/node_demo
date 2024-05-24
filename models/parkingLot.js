@@ -1,5 +1,7 @@
 // 停车场模型
 const mongoose = require("mongoose");
+const db = require("../config/db");
+// const Schema = mongoose.Schema;
 
 const parkingLotSchema = new mongoose.Schema({
   car_park_no: { type: String, required: true },
@@ -17,4 +19,6 @@ const parkingLotSchema = new mongoose.Schema({
   is_favorite: { type: Boolean, default: false },
 });
 
-module.exports = mongoose.model("ParkingLot", parkingLotSchema);
+const model = db.model("ParkingLot", parkingLotSchema);
+
+module.exports = model;
